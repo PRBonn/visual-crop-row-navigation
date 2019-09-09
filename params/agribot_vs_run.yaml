@@ -1,0 +1,196 @@
+ControllerType: 1
+LineFitting_method: 1
+
+publish_cmd_vel: true
+publish_linear_vel: true
+
+mask_tune: false
+Scale: 1.0
+
+minContourSize: 2.0
+
+single_camera_mode: false
+w_control_mode: 0
+
+cnt_off: 20
+# -------------------------------------------------------
+#---------------------- Waypoints ----------------------- 
+div_soft: 25
+# -------------------------------------------------------
+#---------------------- Waypoints ----------------------- 
+# height: 720
+# width: 1280
+# ex_Xc: 640
+# ex_Yc: 300
+
+width: 640
+height: 480
+ex_Xc: 320
+ex_Yc: 240
+
+nh_L: 120
+nh_H: 250
+
+nh_offset: 200
+
+min_points_switch: 2
+min_frame: 5
+coef: 55
+#-------------------------------------------------------
+#--------------------- Velocity Topic ------------------ 
+vf_des: 0.2   # 0.15 sim   0.25
+vb_des: 0.2   # 0.15 sim   0.2
+w_max: 0.1   # 0.2 sim
+w_min: 0.01
+
+z_min: 0.01
+# -------------------------------------------------------
+#---------------------- Controller ---------------------- 
+del_t: 0.1
+ty: 0.0
+
+tz: 0.7 # 0.7 husky
+rho_b: -60.0
+rho_f: -60.0
+# -------------------------------------------------------
+#---------------------- Gains --------------------------- 
+# sim
+# lambda_x_1: 1000
+# lambda_w_1: 100
+
+# lambda_x_2: 10
+# lambda_w_2: 1000
+
+# lambda_x_3: 1000
+# lambda_w_3: 100
+
+# lambda_x_4: 100
+# lambda_w_4: 1000
+
+# lambda_x_1: 1
+# lambda_w_1: 1
+
+# lambda_x_2: 1
+# lambda_w_2: 1
+
+# lambda_x_3: 1
+# lambda_w_3: 1
+
+# lambda_x_4: 1
+# lambda_w_4: 1
+
+# husky
+lambda_x_1: 10
+lambda_w_1: 1
+
+lambda_x_2: 0
+lambda_w_2: 5000
+
+
+lambda_x_3: 10
+lambda_w_3: 1
+
+lambda_x_4: 0
+lambda_w_4: 5000
+# -------------------------------------------------------
+
+#---------------------- Waypoints ---------------------- 
+mode: 1
+cam_num: 1
+drive_forward: true
+turning_mode: false
+steering_dir: 1
+driving_dir: 1
+
+# mode: 2
+# cam_num: 2
+# drive_forward: false
+# turning_mode: true
+# steering_dir: -1
+# driving_dir: 1
+
+# mode: 3
+# cam_num: 2
+# drive_forward: true
+# turning_mode: false
+# steering_dir: -1
+# driving_dir: -1
+
+# mode: 4
+# cam_num: 1
+# drive_forward: false
+# turning_mode: true
+# steering_dir: 1
+# driving_dir: -1
+#-------------------------------------------------------
+#----------------Image filter params-------------------- 
+# sim
+max_Hue: 80
+min_Hue: 40
+
+max_Saturation: 255
+min_Saturation: 100
+
+max_Value: 255
+min_value: 70
+
+# max_Hue: 70
+# min_Hue: 20
+
+# max_Saturation: 255
+# min_Saturation: 100 
+
+# max_Value: 255
+# min_value: 200
+
+# # Red marker
+# max_Hue: 10
+# min_Hue: 0
+
+# max_Saturation: 240
+# min_Saturation: 180
+
+# max_Value: 255
+# min_value: 150
+
+#normal
+# max_Hue: 250
+# min_Hue: 160
+
+# max_Saturation: 255
+# min_Saturation: 180
+
+# max_Value: 255
+# min_value: 90
+
+
+#-------------------------------------------------------
+#----------------Line fitting params-------------------- 
+center_max_off: 600
+center_min_off: 600
+#-------------------------------------------------------
+#----------------Line fitting params-------------------- 
+LineDiffOffset: 0.1
+FilterQuieSize: 2
+#-------------------------------------------------------
+#----------------Drive params-------------------- 
+max_vel_lin_: 0.3
+min_vel_lin_: 0.25
+max_incr_lin_: 0.1
+k_p_lin_: 1.0
+k_i_lin_: 0.0
+k_d_lin_: 0.1
+
+max_vel_ang_: 0.4
+min_vel_ang_: 0.15
+max_incr_ang_: 0.05
+k_p_ang_: 0.05
+k_i_ang_: 0.0
+k_d_ang_: 0.001
+
+# ------------------------------------------------------
+#---------------------- Waypoints ---------------------- 
+x_poses: [ 1.9, 2.41, 2]
+y_poses: [ 0.33, -0.9, -1.32]
+z_poses: [ 0.0, -1.57,  -3.14]
+
