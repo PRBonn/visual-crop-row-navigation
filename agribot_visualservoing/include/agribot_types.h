@@ -17,7 +17,11 @@ using namespace Eigen;
 
 namespace agribot_vs {
     
-// Neighbourhood Struct 
+/**
+ * @brief Neighbourhood type containing 
+ * features of each Neighbourhood
+ * 
+ */
 struct Neighbourhood {
   int Xc;
   int Yc;
@@ -28,13 +32,16 @@ struct Neighbourhood {
 } ;
 
 
-// Camera Struct
+/**
+ * @brief object of camera containing features and 
+ * neighbourhood properties 
+ */
 struct camera{
   Mat image;
   vector<int> id;
   vector<int> nh_id;
   vector<Point2f> points;
-  vector<Point2f> nh_points;
+  vector<Point2f> nh_points; 
   vector<vector<Point>> contours;
   vector<Vec4i> lines;
   // set camera Intrinsics

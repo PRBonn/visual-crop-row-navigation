@@ -16,7 +16,7 @@ using std::cerr;
 using cv::Mat;
 
 namespace agribot_vs{
-
+  
   AgribotVS::AgribotVS(){
 
     CenterLine.resize(1, 0);
@@ -43,7 +43,6 @@ namespace agribot_vs{
   }
   AgribotVS::~AgribotVS(){
   };
-
   bool AgribotVS::readRUNParmas(ros::NodeHandle& nodeHandle_) {
 
     nodeHandle_.param("/agribot_vs/min_frame", min_frame, 15);
@@ -182,11 +181,6 @@ namespace agribot_vs{
 
     // find enclosing Polygon whcih fits arround the contures 
     for (size_t i = 0; i < contours.size(); i++) {
-      // for(size_t j = 0; j < contours[i].size(); j++)
-      // {
-      //   center.push_back(Point2f(contours[i][j].x,contours[i][j].y));
-      // }
-      
       approxPolyDP(Mat(contours[i]), contours_poly[i], 2, true);
       minEnclosingCircle((Mat)contours_poly[i], center[i], radius[i]);
       cv::circle(img, Point(center[i].x, center[i].y),3, Scalar(51, 204, 51),CV_FILLED, 8,0);
@@ -208,8 +202,6 @@ namespace agribot_vs{
           center[i].x <= (img.cols/2) + center_max_off && 
           radius[i] >= this->minContourSize) {
         Filtered_Centers.push_back(center[i]);
-        //Scalar color = Scalar(rng.uniform(0,255), rng.uniform(0, 255), rng.uniform(0, 255));
-        //cv::circle(img, Point(center[i].x, center[i].y),15, color, 3,0); //CV_FILLED  Scalar(100,50,100)
       }
 
     }
@@ -226,16 +218,6 @@ namespace agribot_vs{
     if(ContourCenters.size() > 0 ){
       Vec4f linefit;
       cv::fitLine(ContourCenters,linefit,CV_DIST_L2,0,0.01,0.01);
-      // float vx = linefit[0];
-      // float vy = linefit[1];
-      // x = linefit[2];
-      // y = linefit[3];
-      // int lefty = round((-x * vy / vx) + y);
-      // int righty = round(((img.cols - x) * vy / vx) + y);
-      // line[0] = img.cols - 1;
-      // line[1] = righty;
-      // line[2] = 0;
-      // line[3] = lefty;
 
       P1.x = linefit[0] + linefit[2];
       P1.y = linefit[1] + linefit[3];
@@ -273,26 +255,6 @@ namespace agribot_vs{
 
       MatrixXf R_out(2,2);
       R_out = is_in_image_point(R);
-
-      // if(Vectlines.size() >= (uint)FilterQuieSize){
-      // Vectlines.erase(Vectlines.begin());
-      // }
-      // Vectlines.push_back(line);
-
-      // for (uint i = 0; i < Vectlines.size(); i++)
-      // {
-      //   AvgLine[0][0] += Vectlines[i][0];
-      //   AvgLine[0][1] += Vectlines[i][1];
-      //   AvgLine[0][2] += Vectlines[i][2];
-      //   AvgLine[0][3] += Vectlines[i][3];
-      // }
-      // AvgLine[0][0] /= FilterQuieSize;
-      // AvgLine[0][1] /= FilterQuieSize;
-      // AvgLine[0][2] /= FilterQuieSize;
-      // AvgLine[0][3] /= FilterQuieSize;
-
-      // Vec4i l = AvgLine[0];
-      //cout << R_out(0,0) << " "<< R_out(0,1) << " "<<  R_out(1,0) << " "<< R_out(1,1) << " " << endl;
       cv::line(img, Point(R_out(0,0), R_out(0,1)),Point(R_out(1,0), R_out(1,1)), Scalar(0, 0, 255), 1, CV_AA);
       AvgLine[0][0] =R_out(0,0);
       AvgLine[0][1] =R_out(0,1);
@@ -486,8 +448,6 @@ namespace agribot_vs{
             drive_forward = true;
             turning_mode  = false;
             cout << "turning mode OFF" << endl;
-            // shift the neigbourhood
-            //steering_dir = -steering_dir;
             shift_neighbourhood(I_primary, steering_dir);
             is_in_neigbourhood(I_primary);  
 
@@ -571,93 +531,6 @@ namespace agribot_vs{
     P.y = R(ind_max,1);
 
     return ind_max;
-  }
-  void AgribotVS::compute_intersection_old(Point2f& P, Point2f& Q){
-    // computes side given the points P, Q - side = 1 (Top) - side = 2 (Left) - side = 3 (Bottom) - side = 4 (Right)
-
-    Vector3f origin_h(0,0,1);
-    Vector3f W_h(width,0,1);
-    Vector3f H_h(0,height,1);
-    Vector3f WH_h(width,height,1);
-
-    // compute image border lines
-    Vector3f l_ib = origin_h.cross(W_h); 
-    Vector3f l_it = H_h.cross(WH_h);
-    Vector3f l_il = origin_h.cross(H_h);
-    Vector3f l_ir = W_h.cross(WH_h);
-
-    // compute line PQ
-    Vector3f P_h(P.x,P.y,1);
-    Vector3f Q_h(Q.x,Q.y,1);
-    Vector3f l =  P_h.cross(Q_h);
-
-    // compute intersections with all four lines
-    Vector2f R_t = hom2euc(l.cross(l_it));
-    Vector2f R_l = hom2euc(l.cross(l_il));
-    Vector2f R_b = hom2euc(l.cross(l_ib)); 
-    Vector2f R_r = hom2euc(l.cross(l_ir));
-
-    // compute points within the image 
-    MatrixXf R(4,2);
-    R << R_t(0), R_t(1),
-         R_l(0), R_l(1),
-         R_b(0), R_b(1),
-         R_r(0), R_r(1);
-    Vector4i in = is_in_image(R);
-    
-    // // intersection points
-    MatrixXf S(2,2);
-    S << 0,0,
-         0,0;
-
-    VectorXi Sind(2);
-         Sind << 0,0;
-
-    // Sind = find(in); -> matlab 
-    int cnt = 0;
-    for(int i = 0; i < 4; i++){
-      if(in(i) == 1){
-        S.row(cnt) = R.row(i);
-        Sind(cnt) = cnt; 
-        cnt++;
-      }
-    }
-
-    // angle PQ
-    float Y = Q.y-P.y;
-    float X = Q.x-P.x;
-    float phi = wrapToPi(atan2(Y,X)+M_PI);
-    
-    //distance to P 
-    MatrixXf _P(2,1);
-    _P << P.x,
-          P.y;
-    Vector2f D = dist(S,_P);
-
-    // points along the line
-    MatrixXf S_(2,2);
-    S_ << P.x + D(0) * cos(phi), P.y + D(0) * sin(phi),
-          P.x + D(1) * cos(phi), P.y + D(1) * sin(phi); 
-
-    // // distance to original points
-    Vector2f DS = dist(S,S_);
-
-    // matching points
-    // [~, minds] = min(DS);
-    int minds = 0;
-    if(DS(0,0) < DS(1,0)) minds = 0;
-    else minds = 1;
-    side = Sind(minds);
-    // Intersection of P with image boundaries
-    P.x = S(minds,0);
-    P.y = S(minds,1);
-
-    // Intersection of Q with image boundaries
-    // [~, maxds] = max(DS);
-    int maxds = 0;
-    if(DS(0,0) < DS(1,0)) maxds = 1;
-    Q.x = S(maxds,0);
-    Q.y = S(maxds,1);
   }
   //*************************************************************************************************
   Vector2f AgribotVS::hom2euc(Vector3f Mat){

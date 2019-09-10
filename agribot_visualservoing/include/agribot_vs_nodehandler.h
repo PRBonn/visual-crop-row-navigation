@@ -16,19 +16,66 @@ using namespace std;
 using namespace Eigen;
 
 namespace agribot_vs {
-
+/**
+ * @brief node handler class of VisualServoing application
+ * 
+ */
 class AgribotVSNodeHandler {
  public:
-
+  /**
+   * @brief Construct a new Agribot V S Node Handler object
+   * 
+   * @param node_handler 
+   */
   AgribotVSNodeHandler(ros::NodeHandle& node_handler);
+  /**
+   * @brief Destroy the Agribot V S Node Handler object
+   * 
+   */
   virtual ~AgribotVSNodeHandler();
+  /**
+   * @brief gets the input camera (primary one) to extract crop-rows and visual featues
+   * 
+   * @param src is primary camera
+   */
   void CropRow_Tracking(camera& src);
-  void IMUCallback(const sensor_msgs::Imu::ConstPtr& msg);
-  void image_front_calllback(const sensor_msgs::ImageConstPtr& msg);
-  void image_back_calllback(const sensor_msgs::ImageConstPtr& msg);
-  void OdomCallback(const nav_msgs::Odometry::ConstPtr& msg);
-  void Amcl_PoseCallback(const geometry_msgs::PoseStamped& msg);
+
+  void imuCallBack(const sensor_msgs::Imu::ConstPtr& msg);
+  /**
+   * @brief gets front camera's image
+   * 
+   * @param msg 
+   */
+  void imageFrontCalllBack(const sensor_msgs::ImageConstPtr& msg);
+  /**
+   * @brief gets rear camera's image
+   * 
+   * @param msg 
+   */
+  void imageBackCalllBack(const sensor_msgs::ImageConstPtr& msg);
+  /**
+   * @brief gets the robot odometry from base controller
+   * 
+   * @param msg 
+   */
+  void odomCallBack(const nav_msgs::Odometry::ConstPtr& msg);
+  /**
+   * @brief gets the poseof the robot in Lab from Mocap system
+   * 
+   * @param msg 
+   */
+  void amclPoseCallBack(const geometry_msgs::PoseStamped& msg);
+  /**
+   * @brief stops the robot fror given time
+   * 
+   * @param delay 
+   */
   void StopForSec(float delay);
+  /**
+   * @brief publishes /cmd_vel topic to move the robot 
+   * 
+   * @param _in 
+   */
   void publishVelocity(int _in=1);
   // void dynamicReconfig_callback(agribot_visualservoing::AgribotVSConfig &config, uint32_t level);
 

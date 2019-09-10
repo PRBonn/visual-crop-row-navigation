@@ -20,11 +20,11 @@ AgribotVSNodeHandler::AgribotVSNodeHandler(ros::NodeHandle& nodeHandle): nodeHan
   }
 
   // Subscribers
-  image_front_sub = nodeHandle_.subscribe("/front/rgb/image_raw", 2, &AgribotVSNodeHandler::image_front_calllback,this);
-  image_back_sub = nodeHandle_.subscribe("/back/rgb/image_raw", 2, &AgribotVSNodeHandler::image_back_calllback,this);
-  Mocap_sub = nodeHandle_.subscribe("/amcl_pose", 1, &AgribotVSNodeHandler::Amcl_PoseCallback,this);
-  Odom_sub = nodeHandle_.subscribe("/odometry/raw", 10, &AgribotVSNodeHandler::OdomCallback,this);
-  IMU_sub = nodeHandle_.subscribe("/imu/data", 1000, &AgribotVSNodeHandler::IMUCallback,this);
+  image_front_sub = nodeHandle_.subscribe("/front/rgb/image_raw", 2, &AgribotVSNodeHandler::imageFrontCalllBack,this);
+  image_back_sub = nodeHandle_.subscribe("/back/rgb/image_raw", 2, &AgribotVSNodeHandler::imageBackCalllBack,this);
+  Mocap_sub = nodeHandle_.subscribe("/amcl_pose", 1, &AgribotVSNodeHandler::amclPoseCallBack,this);
+  Odom_sub = nodeHandle_.subscribe("/odometry/raw", 10, &AgribotVSNodeHandler::odomCallBack,this);
+  IMU_sub = nodeHandle_.subscribe("/imu/data", 1000, &AgribotVSNodeHandler::imuCallBack,this);
   
   // Publishers
   Time_pub = nodeHandle_.advertise<rosgraph_msgs::Clock>("/clock", 10);
@@ -56,7 +56,7 @@ void AgribotVSNodeHandler::CropRow_Tracking(camera& src){
       publishVelocity(0);
     }
 }
-void AgribotVSNodeHandler::image_front_calllback(const sensor_msgs::ImageConstPtr& msg) {
+void AgribotVSNodeHandler::imageFrontCalllBack(const sensor_msgs::ImageConstPtr& msg) {
   try {
     agribotVS.front_cam.image = cv_bridge::toCvShare(msg, "bgr8")->image;
     CropRow_Tracking(agribotVS.front_cam);
@@ -77,7 +77,7 @@ void AgribotVSNodeHandler::image_front_calllback(const sensor_msgs::ImageConstPt
     ROS_ERROR("Could not convert from '%s' to 'bgr8'.", msg->encoding.c_str());
   }
 }
-void AgribotVSNodeHandler::image_back_calllback(const sensor_msgs::ImageConstPtr& msg) {
+void AgribotVSNodeHandler::imageBackCalllBack(const sensor_msgs::ImageConstPtr& msg) {
   try {
     agribotVS.back_cam.image = cv_bridge::toCvShare(msg, "bgr8")->image;
     CropRow_Tracking(agribotVS.back_cam);
@@ -98,13 +98,13 @@ void AgribotVSNodeHandler::image_back_calllback(const sensor_msgs::ImageConstPtr
     ROS_ERROR("Could not convert from '%s' to 'bgr8'.", msg->encoding.c_str());
   }
 }
-void AgribotVSNodeHandler::IMUCallback(const sensor_msgs::Imu::ConstPtr& msg){
+void AgribotVSNodeHandler::imuCallBack(const sensor_msgs::Imu::ConstPtr& msg){
   tf::Quaternion quat;
   tf::quaternionMsgToTF(msg->orientation, quat);
   tf::Matrix3x3 m(quat);
   m.getRPY(imu_roll, imu_pitch, imu_yaw);
 }
-void AgribotVSNodeHandler::Amcl_PoseCallback(const geometry_msgs::PoseStamped& msg) {
+void AgribotVSNodeHandler::amclPoseCallBack(const geometry_msgs::PoseStamped& msg) {
   tf::Quaternion q(msg.pose.orientation.x, msg.pose.orientation.y,
                    msg.pose.orientation.z, msg.pose.orientation.w);
   tf::Matrix3x3 m(q);
@@ -116,7 +116,7 @@ void AgribotVSNodeHandler::Amcl_PoseCallback(const geometry_msgs::PoseStamped& m
   agribotVS.TransVec[1] = msg.pose.position.y;
   agribotVS.TransVec[2] = msg.pose.position.z;
 }
-void AgribotVSNodeHandler::OdomCallback(const nav_msgs::Odometry::ConstPtr& msg) {
+void AgribotVSNodeHandler::odomCallBack(const nav_msgs::Odometry::ConstPtr& msg) {
   agribotVS.RobotPose[0] = msg->pose.pose.position.x;
   agribotVS.RobotPose[1] = msg->pose.pose.position.y;
   agribotVS.RobotPose[2] = msg->pose.pose.position.z;

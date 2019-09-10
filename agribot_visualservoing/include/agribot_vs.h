@@ -54,55 +54,234 @@ using namespace std;
 using namespace Eigen;
 
 namespace agribot_vs {
-
+/**
+ * @brief main class which offers functions to perform visualServoing
+ * 
+ */
 class AgribotVS {
  public:
+  /**
+   * @brief Construct a new Agribot V S:: Agribot V S object
+   * 
+   */
   AgribotVS();
+  /**
+   * @brief Destroy the Agribot V S:: Agribot V S object
+   * 
+   */
   ~AgribotVS();
 
+  /**
+   * @brief - function to load run params 
+   * 
+   * @param nodeHandle_ - ROS node handle
+   * @return true - in case of loading all params
+   * @return false - in case of failure
+   */
   bool readRUNParmas(ros::NodeHandle& nodeHandle_);
-
+  /**
+   * @brief - detects features(contours in specific range of color) from inpout image
+   * 
+   * @param img - input - image of front or back cameras
+   * @return vector<vector<Point>> - contours extracted from image 
+   */
   vector<vector<Point>> CropRowFeatures(Mat& img);
-  vector<Vec4i> EdgeDetector(Mat& Input_Image, float Scale);
-  vector<Vec4i> FitLineOnContures(Mat& img, vector<Point2f>& ContourCenters);
-  vector<Point2f> getContureCenters(Mat& img, vector<vector<Point>>& contours);
-  vector<Point2f> filterContures(Mat& img, vector<vector<Point>>& contours);
-
-  void compute_feature_point(camera& I);
-  void draw_features(camera& I, Vector3f Feature, cv::Scalar color);
-
+  /**
+   * @brief main functoin to control the robot baesd on extracted features
+   * 
+   * @param I_primary camera
+   * @param I_secondary camera
+   */
   void Controller(camera& I_primary, camera& I_secondary);
+  /**
+   * @brief using simple regression fits line on extracted features from image
+   * 
+   * @param img input image (draws the line on img)
+   * @param ContourCenters 
+   * @return vector<Vec4i> average line (the best fit)
+   */
+  vector<Vec4i> FitLineOnContures(Mat& img, vector<Point2f>& ContourCenters);
+  /**
+   * @brief estimates center of passed contours
+   * 
+   * @param img is input image, contours will be printed on top of it
+   * @param contours - extracted features from image
+   * @return vector<Point2f> - center of passed contours 
+   */
+  vector<Point2f> getContureCenters(Mat& img, vector<vector<Point>>& contours);
+  /**
+   * @brief fillters contours based on the fitting polygon/circle radius
+   * 
+   * @param img input image
+   * @param contours extracted contours
+   * @return vector<Point2f> flitered contours
+   */
+  vector<Point2f> filterContures(Mat& img, vector<vector<Point>>& contours);
+  /**
+   * @brief computes control feature points, visualized on the image corners
+   * 
+   * @param I  primary camera containing features
+   */
+  void compute_feature_point(camera& I);
+  /**
+   * @brief prints the features on the primary image
+   * 
+   * @param I primary camera
+   * @param Feature extracted features inside the neighbourhood
+   * @param color of visualiation
+   */
+  void draw_features(camera& I, Vector3f Feature, cv::Scalar color);
+  /**
+   * @brief switches primary and secondary cameras 
+   * 
+   * @param cam_primary id of current primary camera (front-> 1 back ->2)
+   */
   void switch_cameras(int& cam_primary);
+  /**
+   * @brief handles switching operation on the senario of crop row following
+   * 
+   * @param I_primary camera
+   * @param I_secondary camera
+   * @param min_points minimum points inside the target image which wants to switch from
+   */
   void switching_controller(camera& I_primary, camera& I_secondary, unsigned int min_points);
-
+  /**
+   * @brief computes intersection of line passing through P,Q
+   * with four different edges of the image
+   * 
+   * @param P point in the bottom
+   * @param Q point in the top
+   * @return int returns index of the edge (top to bottom CW 0-3)
+   */
   int compute_intersection(Point2f& P, Point2f& Q);
-  void compute_intersection_old(Point2f& P, Point2f& Q);
-
-  MatrixXf is_in_image_point(MatrixXf R);
-
-  float compute_Theta(Point2f& P, Point2f& Q);
-  Vector2f dist(MatrixXf& A, MatrixXf& B);
-  float wrapToPi(float angle);
-  Vector2f hom2euc(Vector3f Mat);
-  VectorXi find(Eigen::Vector4i A);
-
-  void shift_neighbourhood(camera& I, int shift_dir=1);
-  void initialize_neigbourhood(camera& I);
-  void is_in_neigbourhood(camera& I);
-  void draw_neighbourhood(camera& I);
-  vector<Point2f> Compute_nh_ex(camera& I);
-  
+  /**
+   * @brief checkes for coordinates of feature to be inside the image
+   * 
+   * @param R 
+   * @return MatrixXf 
+   */
   Vector4i is_in_image(MatrixXf R);
-
+  /**
+   * @brief checkes for coordinates of feature to be inside the neighbourhood
+   * 
+   * @param R 
+   * @return MatrixXf 
+   */
+  MatrixXf is_in_image_point(MatrixXf R);
+  /**
+   * @brief computes angle difference between 
+   * fitted line on P-Q and reference line on the middle
+   * 
+   * @param P point in the bottom
+   * @param Q point in the top
+   * @return float 
+   */
+  float compute_Theta(Point2f& P, Point2f& Q);
+  /**
+   * @brief computes distance between two pointsets
+   * 
+   * @param A 
+   * @param B 
+   * @return Vector2f distance of paires of A-B features
+   */
+  Vector2f dist(MatrixXf& A, MatrixXf& B);
+  /**
+   * @brief warps the input angle to Pi
+   * 
+   * @param angle input
+   * @return float warped angle
+   */
+  float wrapToPi(float angle);
+  /**
+   * @brief converts back point from homogenous coordinate
+   * system to Euclidian coordinate system
+   * 
+   * @param Mat 
+   * @return Vector2f 
+   */
+  Vector2f hom2euc(Vector3f Mat);
+  /**
+   * @brief gets the ids of featues with non-zero value in A
+   * 
+   * @param A 
+   * @return VectorXi 
+   */
+  VectorXi find(Eigen::Vector4i A);
+  /**
+   * @brief shifts neighbourhood windows in passed camera 
+   * with input direction and valued laoded from params 
+   * 
+   * @param I passed camera
+   * @param shift_dir direction of movement
+   */
+  void shift_neighbourhood(camera& I, int shift_dir=1);
+  /**
+   * @brief used to initialize the neighbourhood windon the center of image
+   * 
+   * @param I camera
+   */
+  void initialize_neigbourhood(camera& I);
+  /**
+   * @brief updates points layed in the camera's neigbhourhood 
+   * 
+   * @param I input camera
+   */
+  void is_in_neigbourhood(camera& I);
+  /**
+   * @brief prints neighbourhood on the image 
+   * 
+   * @param I input camera
+   */
+  void draw_neighbourhood(camera& I);
+  /**
+   * @brief 
+   * 
+   * @param I 
+   * @return vector<Point2f> 
+   */
+  vector<Point2f> Compute_nh_ex(camera& I);
+  /**
+   * @brief projects point from camera to image coordinate system
+   * 
+   * @param xc  input image in camera coordinates
+   * @return Point2f output image in image coordinate system
+   */
   Point2f camera2image(Point2f& xc);
+  /**
+   * @brief projects point from camera to image coordinate system
+   * 
+   * @param xc  input image in camera coordinates
+   * @return Point2f output image in origin coordinate system
+   */
   Point2f camera2origin(Point2f& xc);
-
+  /**
+   * @brief projects point from origin to image coordinate system
+   * 
+   * @param xc  input image in origin coordinates
+   * @return Point2f output image in image coordinate system
+   */
   Point2f origin2image(Point2f& xc);
+  /**
+   * @brief projects point from origin to camera coordinate system
+   * 
+   * @param xc  input origin in image coordinates
+   * @return Point2f output image in camera coordinate system
+   */
   Point2f origin2camera(Point2f& xc);
-  
+  /**
+   * @brief projects point from image to camera coordinate system
+   * 
+   * @param xc  input image in image coordinates
+   * @return Point2f output image in camera coordinate system
+   */
   Point2f image2camera(Point2f& xc);
+  /**
+   * @brief projects point from image to origin coordinate system
+   * 
+   * @param xc input image in image coordinates
+   * @return Point2f output image in origin coordinate system
+   */
   Point2f image2origin(Point2f& xc);
-
   std::vector<double> getEulerAngles(const nav_msgs::Odometry::ConstPtr& Pose);
 
   // This file defines the controller parameters
