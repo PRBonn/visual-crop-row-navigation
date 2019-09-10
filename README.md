@@ -1,7 +1,7 @@
 ## Visual-Servoing based Navigation for Monitoring Row-Crop Fields
 ---
 <div align="center">
-	<img src="/img/vs_poster.png" alt="visualservoing" width="700" title="visualservoing"/>
+	<img src="/img/vs_poster.png" alt="visualservoing" width="850" title="visualservoing"/>
 </div>
 
 In this paper, we propose a framework tailored for
