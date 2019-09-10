@@ -1,2 +1,5 @@
-# visual-crop-row-navigation
-Visual-servoing based navigation for monitoring row-crop fields
+# Visual-Servoing based Navigation for Monitoring Row-Crop Fields
+
+- add description
+- add pics
+- add videos
