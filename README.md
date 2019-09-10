@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # visual-crop-row-navigation
 Visual-servoing based navigation for monitoring row-crop fields
 
@@ -14,3 +15,10 @@ shapes and sizes of field
 ## License
 
 This project is licensed under the FreeBSD License. See the LICENSE.txt file for details.
+=======
+# Visual-Servoing based Navigation for Monitoring Row-Crop Fields
+
+- add description
+- add pics
+- add videos
+>>>>>>> 5cc740fb459996817ee017570c0ccfbe24b5fdc0
