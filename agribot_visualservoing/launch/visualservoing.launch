@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<launch>
+
+ <!-- <include file="$(find agribot_launch)/launch/openni_1.launch"/> -->
+
+<!-- <node pkg="rosbag" type="play" name="player" args=" clock -r 0.5 /home/alireza/demo.bag">
+	<remap from="/agribot/camera/image_raw" to="/camera/image_raw"/>
+</node> -->
+
+<!-- <node pkg="rosbag" type="play" name="player" args=" clock /media/alireza/CCCE40F4CE40D7FA/Gitlab/mp-agribot/code/catkin_ws/src/2019-04-10-17-39-22.bag">
+</node> -->
+
+<!-- <node pkg="rosbag" type="play" name="player" args=" clock  /media/psf/Data/agrivader_2018-05-14-10-18-52_2.bag">
+<remap from="/zed/camera/left/image_raw" to="/camera/image_raw"/>
+</node> -->
+
+<!-- <include file="$(find zed_cpu_ros)/launch/zed_cpu_ros.launch">
+ <remap from="/camera/right/image_raw" to="/agribot/front_camera/image_raw"/>
+</include> -->
+
+<!--  <include file="$(find agribot_launch)/launch/camera_umd.launch" />
+ -->
+<node pkg="agribot_visualservoing" type="agribot_vs_node" name="agribot_vs" output="screen">
+  <!-- <remap from="/camera/rgb/image_raw" to="/agribot/front_camera/image_raw"/> -->
+  <!-- <remap from="/back/rgb/image_raw" to="/agribot/back_camera/image_raw"/> -->
+  <!-- <remap from="/camera/rgb/image_raw" to = "/front/rgb/image_raw"/> -->
+	<rosparam command="load" file="$(find agribot_visualservoing)/params/agribot_vs_run.yaml"/>
+</node>
+
+</launch>
+
+
+

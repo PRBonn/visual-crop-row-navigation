@@ -1,0 +1,103 @@
+ControllerType: 1
+LineFitting_method: 1
+
+publish_cmd_vel: true
+publish_linear_vel: true
+
+mask_tune: false
+Scale: 1.0
+
+minContourSize: 2.0
+
+single_camera_mode: false
+w_control_mode: 0
+
+cnt_off: 20
+div_soft: 25
+# -------------------------------------------------------
+#---------------------- Neighbourhood--------------------- 
+width: 640
+height: 480
+ex_Xc: 320
+ex_Yc: 240
+
+nh_L: 120
+nh_H: 250
+
+nh_offset: 200
+
+min_points_switch: 10
+min_frame: 30
+coef: 55
+#-------------------------------------------------------
+#--------------------- Velocity Topic ------------------ 
+vf_des: 0.2   
+vb_des: 0.2   
+w_max: 0.1  
+w_min: 0.01
+z_min: 0.01
+# -------------------------------------------------------
+#---------------------- Controller ---------------------- 
+del_t: 0.1
+ty: 0.6
+
+tz: 0.7 # 0.7 husky
+rho_b: -60.0
+rho_f: -60.0
+# -------------------------------------------------------
+#---------------------- Gains --------------------------- 
+# husky
+lambda_x_1: 10
+lambda_w_1: 1
+
+lambda_x_2: 0
+lambda_w_2: 5000
+
+
+lambda_x_3: 10
+lambda_w_3: 1
+
+lambda_x_4: 0
+lambda_w_4: 5000
+# -------------------------------------------------------
+
+#---------------------- Waypoints ---------------------- 
+mode: 1
+cam_num: 1
+drive_forward: true
+turning_mode: false
+steering_dir: 1
+driving_dir: 1
+
+# mode: 2
+# cam_num: 2
+# drive_forward: false
+# turning_mode: true
+# steering_dir: -1
+# driving_dir: 1
+
+# mode: 3
+# cam_num: 2
+# drive_forward: true
+# turning_mode: false
+# steering_dir: -1
+# driving_dir: -1
+
+# mode: 4
+# cam_num: 1
+# drive_forward: false
+# turning_mode: true
+# steering_dir: 1
+# driving_dir: -1
+#-------------------------------------------------------
+#----------------Image filter params-------------------- 
+# field
+max_Hue: 80
+min_Hue: 40
+
+max_Saturation: 255
+min_Saturation: 100
+
+max_Value: 255
+min_value: 70
+
