@@ -29,6 +29,17 @@ shapes and sizes of field
 	<img src="/img/motivation_old.png" alt="visualservoing" width="400" title="visualservoing"/>
 </div>
 
+### How to Run *agribot_visualservoing* package
+To launch the *agribot_visualservoing* simply run:
+1. clone the package into your catkin_ws,
+2. make sure dependencies are provieded,
+3. build the package,
+3. launch package using:
+```
+$ roslaunch agribot_visualservoing visualservoing.launch
+```
+---
+**Node Properties**
 
 Node: [/agribot_vs]
 
@@ -47,15 +58,19 @@ Subscriptions:
 Services: 
  * None
 
---- 
-
 **Parameters**
  * None
----
-- add description
-- add pics
-- add videos
 
+--- 
+
+
+### Download Test Bagfile
+
+You can have a small bagfile caoninting required images from a filed to run the code easily.
+
+Download it from:
+
+---
 ## License
 
 This project is licensed under the FreeBSD License. See the LICENSE.txt file for details.

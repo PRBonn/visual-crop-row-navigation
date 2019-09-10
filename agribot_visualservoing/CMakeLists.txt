@@ -8,15 +8,13 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   genmsg
   cmake_modules 
-  message_generation
-  dynamic_reconfigure 
+  message_generation 
   std_msgs
   cv_bridge
   sensor_msgs
   image_transport
   move_base
   robot_localization
-  
 )
 
 find_package( PkgConfig )
