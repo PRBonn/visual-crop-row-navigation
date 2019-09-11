@@ -15,7 +15,7 @@ shapes and sizes of field
 
 to know more about its performance, please watch  the Youtube clip:([Click on the Image](https://youtu.be/xHxL8koNkfc))
 
-[![AgriBot-Visual-Servoing based Navigation for Monitoring Row-Crop Fields](http://img.youtube.com/vi/xHxL8koNkfc/0.jpg)](https://youtu.be/xHxL8koNkfc "Visual-Servoing based Navigation for Monitoring Row-Crop Fields")
+[![AgriBot-Visual-Servoing based Navigation for Monitoring Row-Crop Fields](http://img.youtube.com/vi/Vy0LuEckN2Q/0.jpg)](https://youtu.be/Vy0LuEckN2Q "Visual-Servoing based Navigation for Monitoring Row-Crop Fields")
 
 
 ## Features
