@@ -14,31 +14,59 @@ using C++ and ROS and thoroughly tested it in several simulated environments wit
 shapes and sizes of field
 
 
+## Features
+ - Capble of autonmously navigating mobile robots through the row-crop fields.  
+ - Executable on embeded controllers with limit processing power (Odroid, Raspberry Pi).
+ - Complitly compatible with ROS. 
+ - Capble of having same performance on different mobile robot platforms.
+ - Providing simulation environment to ease testing process.
 
-<div align="center">
+ <div align="center">
 	<img src="/img/vs_graph.png" alt="visualservoing" width="400" title="visualservoing"/>
     <img src="/img/vs_em.png" alt="visualservoing" width="400" title="visualservoing"/>
 </div>
 
+## Dependencies
+* c++11
+* catkin
+* opencv >= 2.4
+* Eigen >= 3.3
 
+Also a complete simulation package is provieded in [AgriBot Repository]() from Uniersity of Bonn which includes simualted fields and robots needed to test the application.
 
 <div align="center">
 	<img src="/img/motivation.png" alt="visualservoing" width="400" title="visualservoing"/>
     <img src="/img/motivation_old.png" alt="visualservoing" width="400" title="visualservoing"/>
 </div>
 
-### How to Run *agribot_visualservoing* package
+
+## Build and Run *agribot_visualservoing* package
 To launch the *agribot_visualservoing* simply run:
 1. clone the package into your catkin_ws,
+```bash
+cd ~/catkin_ws/src
+git clone https://github.com/PRBonn/visual-crop-row-navigation.git
+```
 2. make sure dependencies are provieded,
 3. build the package,
-3. launch package using:
+```bash
+cd ~/catkin_ws
+catkin_make or catkin build
 ```
+4. you need to have two cameras with these topics already running:
+```
+* /front/rgb/image_raw [image]
+* /back/rgb/image_raw [image]
+```
+to stream image from webcams you can use [usb_cam](http://wiki.ros.org/usb_cam)
+
+5. launch package using:
+```bash
 $ roslaunch agribot_visualservoing visualservoing.launch
 ```
 ---
 **Node Properties**
-
+```
 Node: [/agribot_vs]
 
 Publications: 
@@ -58,15 +86,15 @@ Services:
 
 **Parameters**
  * None
-
+```
 --- 
 
 
-### Download Test Bagfile
+## Download Test Bagfile
 
 You can have a small bagfile caoninting required images from a filed to run the code easily.
 
-Download it from:
+Download from: 
 
 ---
 ## License

@@ -8,17 +8,15 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   genmsg
   cmake_modules 
-  message_generation 
+  message_generation
+  dynamic_reconfigure 
   std_msgs
   cv_bridge
   sensor_msgs
   image_transport
-  move_base
-  robot_localization
 )
 
 find_package( PkgConfig )
-
 find_package( OpenCV REQUIRED )
 
 add_message_files(FILES vs_msg.msg)
@@ -51,7 +49,6 @@ catkin_package(
     sensor_msgs
     std_msgs
     message_runtime
-#  DEPENDS
 )
 
 ## Declare a cpp library
@@ -65,24 +62,13 @@ add_executable(agribot_vs_node
   src/agribot_vs_nodehandler.cpp
 )
 
-## Specify libraries to link executable targets against
-target_link_libraries(${PROJECT_NAME}_core
-  ${catkin_LIBRARIES}
-)
-
 target_link_libraries(agribot_vs_node
   ${PROJECT_NAME}_core
   ${catkin_LIBRARIES}
-)
-
-target_link_libraries(agribot_vs_node 
-	${OpenCV_LIBS} 
+  ${OpenCV_LIBS} 
 	Eigen3::Eigen
 )
 
-add_dependencies(agribot_vs_node ${PROJECT_NAME}_gencfg)
 add_dependencies(agribot_vs_node ${${PROJECT_NAME}_EXPORTED_TARGETS})
 add_dependencies(${PROJECT_NAME}_core ${${PROJECT_NAME}_EXPORTED_TARGETS})
 
-
-#add_subdirectory("src")
