@@ -24,7 +24,7 @@ shapes and sizes of field
 
 <div align="center">
 	<img src="/img/motivation.png" alt="visualservoing" width="400" title="visualservoing"/>
-    <img src="/img/motivation_old.png" alt="visualservoing" width="400" title="visualservoing"/
+    <img src="/img/motivation_old.png" alt="visualservoing" width="400" title="visualservoing"/>
 </div>
 
 ### How to Run *agribot_visualservoing* package
