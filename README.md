@@ -13,7 +13,7 @@ the next row seamlessly within the same framework. We implemented our approach
 using C++ and ROS and thoroughly tested it in several simulated environments with different
 shapes and sizes of field
 
-to see more about its performance visit youtube clip:
+to know more about its performance, please watch  the Youtube clip:
 
 [![AgriBot-Visual-Servoing based Navigation for Monitoring Row-Crop Fields](http://img.youtube.com/vi/xHxL8koNkfc/0.jpg)](https://youtu.be/xHxL8koNkfc "Visual-Servoing based Navigation for Monitoring Row-Crop Fields")
 
