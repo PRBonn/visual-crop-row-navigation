@@ -41,7 +41,7 @@ Also a complete simulation package is provieded in [AgriBot Repository]() from [
 
 
 ## Build and Run *agribot_visualservoing* package
-To launch the *agribot_visualservoing* simply run:
+To launch the *agribot_visualservoing* simply follow these steps:
 1. clone the package into your catkin_ws,
 ```bash
 cd ~/catkin_ws/src
