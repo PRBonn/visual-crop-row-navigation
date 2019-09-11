@@ -15,10 +15,10 @@ shapes and sizes of field
 
 
 ## Features
- - Capble of autonmously navigating mobile robots through the row-crop fields.  
- - Executable on embeded controllers with limit processing power (Odroid, Raspberry Pi).
+ - Capable of autonomously navigating mobile robots through the row-crop fields.  
+ - Executable on embedded controllers with limit processing power (Odroid, Raspberry Pi).
  - Compatible with ROS. 
- - Capble of having same performance on different mobile robot platforms.
+ - Capable of having same performance on different mobile robot platforms.
  - Providing simulation environment to ease testing process.
 
  <div align="center">
@@ -47,7 +47,7 @@ To launch the *agribot_visualservoing* simply follow these steps:
 cd ~/catkin_ws/src
 git clone https://github.com/PRBonn/visual-crop-row-navigation.git
 ```
-2. make sure dependencies are provieded,
+2. make sure dependencies are provided,
 3. build the package,
 ```bash
 cd ~/catkin_ws
@@ -92,7 +92,7 @@ Services:
 
 ## Download Test Bagfile
 
-You can have a small bagfile caoninting required images from a filed to run the code easily.
+You can have a small bagfile containing required images from a filed to run the code easily.
 
 Download from: 
 
