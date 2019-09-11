@@ -17,7 +17,7 @@ shapes and sizes of field
 ## Features
  - Capble of autonmously navigating mobile robots through the row-crop fields.  
  - Executable on embeded controllers with limit processing power (Odroid, Raspberry Pi).
- - Complitly compatible with ROS. 
+ - Compatible with ROS. 
  - Capble of having same performance on different mobile robot platforms.
  - Providing simulation environment to ease testing process.
 
@@ -32,7 +32,7 @@ shapes and sizes of field
 * opencv >= 2.4
 * Eigen >= 3.3
 
-Also a complete simulation package is provieded in [AgriBot Repository]() from Uniersity of Bonn which includes simualted fields and robots needed to test the application.
+Also a complete simulation package is provieded in [AgriBot Repository]() from [IPB](http://www.ipb.uni-bonn.de/) including  simualted row-crop fields and robot needed to test the application.
 
 <div align="center">
 	<img src="/img/motivation.png" alt="visualservoing" width="400" title="visualservoing"/>
