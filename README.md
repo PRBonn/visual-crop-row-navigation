@@ -4,7 +4,7 @@
 	<img src="/img/vs_poster.png" alt="visualservoing" width="850" title="visualservoing"/>
 </div>
 
-In this paper, we propose a framework tailored for
+In this project, we propose a framework tailored for
 navigation in row-crop fields by exploiting the regular crop-row structure present
 in the fields. Our approach uses only the images from on-board cameras without
 the need for performing explicit localization or maintaining a map of the field.
@@ -13,20 +13,18 @@ the next row seamlessly within the same framework. We implemented our approach
 using C++ and ROS and thoroughly tested it in several simulated environments with different
 shapes and sizes of field
 
-<div align="center">
-	<img src="/img/vs_graph.png" alt="visualservoing" width="400" title="visualservoing"/>
-</div>
+
 
 <div align="center">
-	<img src="/img/vs_em.png" alt="visualservoing" width="400" title="visualservoing"/>
+	<img src="/img/vs_graph.png" alt="visualservoing" width="400" title="visualservoing"/>
+    <img src="/img/vs_em.png" alt="visualservoing" width="400" title="visualservoing"/>
 </div>
+
+
 
 <div align="center">
 	<img src="/img/motivation.png" alt="visualservoing" width="400" title="visualservoing"/>
-</div>
-
-<div align="center">
-	<img src="/img/motivation_old.png" alt="visualservoing" width="400" title="visualservoing"/>
+    <img src="/img/motivation_old.png" alt="visualservoing" width="400" title="visualservoing"/
 </div>
 
 ### How to Run *agribot_visualservoing* package
