@@ -8,7 +8,7 @@ This is a robot navigation framework tailored for navigating in row-crop fields 
 
 This implementation uses C++ and ROS and has been tested in different environments both in simulation and in real world and on diverse robotic platforms.
 
-Watch a real robot following using this approach to navigate on a test row-crop field [here](https://youtu.be/xHxL8koNkfc) or by clicking on the image below.
+Check out the video of our robot following this approach to navigate on a test row-crop field [here](https://youtu.be/xHxL8koNkfc) or by clicking on the image below.
 
 <div align="center">
 	<a href="http://www.youtube.com/watch?feature=player_embedded&v=0qg6n4sshHk
