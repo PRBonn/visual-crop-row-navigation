@@ -1,4 +1,4 @@
-# Visual-servoing based navigation for monitoring row-crop fields
+## Visual-servoing based navigation for monitoring row-crop fields
 
 <div align="center">
 	<img src="/img/vs_poster.png" alt="visualservoing" width="850" title="visualservoing"/>
@@ -8,9 +8,13 @@ This is a robot navigation framework tailored for navigating in row-crop fields 
 
 This implementation uses C++ and ROS and has been tested in different environments both in simulation and in real world and on diverse robotic platforms.
 
-Watch a real robot following using this approach to navigate on a test row-crop field [here](https://youtu.be/xHxL8koNkfc).
+Watch a real robot following using this approach to navigate on a test row-crop field [here](https://youtu.be/xHxL8koNkfc) or by clicking on the image below.
 
-[![AgriBot-Visual-Servoing based Navigation for Monitoring Row-Crop Fields](http://img.youtube.com/vi/0qg6n4sshHk/0.jpg)](https://youtu.be/0qg6n4sshHk "Visual-Servoing based Navigation for Monitoring Row-Crop Fields")
+<div align="center">
+	<a href="http://www.youtube.com/watch?feature=player_embedded&v=0qg6n4sshHk
+		" target="_blank"><img src="http://img.youtube.com/vi/0qg6n4sshHk/0.jpg" 
+		alt="IMAGE ALT TEXT HERE" width="400" border="10" /></a>
+</div>
 
 
 ## Features
