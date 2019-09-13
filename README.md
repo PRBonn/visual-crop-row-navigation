@@ -1,7 +1,7 @@
 ## Visual-servoing based navigation for monitoring row-crop fields
 
 <div align="center">
-	<img src="/img/vs_poster.png" alt="visualservoing" width="850" title="visualservoing"/>
+	<img src="/img/vs_poster.png" alt="visualservoing" title="visualservoing"/>
 </div>
 
 By [IPB](http://www.ipb.uni-bonn.de/), University of Bonn.
