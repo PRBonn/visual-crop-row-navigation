@@ -4,6 +4,8 @@
 	<img src="/img/vs_poster.png" alt="visualservoing" width="850" title="visualservoing"/>
 </div>
 
+By [IPB](http://www.ipb.uni-bonn.de/), University of Bonn.
+
 This is a robot navigation framework tailored for navigating in row-crop fields by exploiting the regular crop-row structure present in the fields. It uses only the images from on-board cameras without the need for performing explicit localization or maintaining a map of the field. It allows the robot to follow the crop-rows accurately and handles the switch to the next row seamlessly within the same framework. 
 
 This implementation uses C++ and ROS and has been tested in different environments both in simulation and in real world and on diverse robotic platforms.
@@ -18,11 +20,11 @@ Check out the video of our robot following this approach to navigate on a test r
 
 
 ## Features
- - Capable of autonomously navigating mobile robots through the row-crop fields.  
- - Executable on embedded controllers with limit processing power (Odroid, Raspberry Pi).
+ - Autonomous robot navigation in row-crop fields without requiring maps.  
+ - Runs on embedded controllers with limit processing power (Odroid, Raspberry Pi).
  - Compatible with ROS. 
- - Capable of having same performance on different mobile robot platforms.
- - Providing simulation environment to ease testing process.
+ - Same performance on different mobile robotic platforms.
+ - Includes simulation environment to ease the testing process.
 
  <div align="center">
 	<img src="/img/vs_graph.png" alt="visualservoing" width="400" title="visualservoing"/>
@@ -35,7 +37,7 @@ Check out the video of our robot following this approach to navigate on a test r
 * opencv >= 2.4
 * Eigen >= 3.3
 
-Also a complete simulation package is provieded in [AgriBot Repository]() from [IPB](http://www.ipb.uni-bonn.de/) including  simualted row-crop fields and robot needed to test the application.
+A complete simulation package is provided in [AgriBot Repository]() including  simulated row-crop fields and robot for testing the navigation framework.
 
 <div align="center">
 	<img src="/img/motivation.png" alt="visualservoing" width="400" title="visualservoing"/>
