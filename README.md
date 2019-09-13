@@ -15,7 +15,7 @@ Check out the video of our robot following this approach to navigate on a test r
 <div align="center">
 	<a href="http://www.youtube.com/watch?feature=player_embedded&v=0qg6n4sshHk
 		" target="_blank"><img src="http://img.youtube.com/vi/0qg6n4sshHk/0.jpg"
-		alt="Watch video" width="400" border="10" /></a>
+		alt="Watch video" height="280" border="10" /></a>
 </div>
 
 
@@ -27,7 +27,7 @@ Check out the video of our robot following this approach to navigate on a test r
  - Includes simulation environment to ease the testing process.
 
 ## Requirements
- - Mobile robot equipped with two cameras mounted respectively looking to the front and to the back of the robot below.
+ - Mobile robot equipped with two cameras mounted respectively looking to the front and to the back of the robot as illustrated in the picture below.
 
  <div align="center">
 	<img src=".readme/vs_graph.png" alt="agribot_3d" height="280" title="agribot_3d"/>
