@@ -103,3 +103,7 @@ Successfully tested using:
 ## Test data
 
 Download the bagfile used for our experiments [here]().
+
+## Acknowledgments
+This work has partly been supported by the German Research Foundation under Germany’s Excellence Strategy, EXC-2070 - 390732324 ([PhenoRob](http://www.phenorob.de/)).
+
