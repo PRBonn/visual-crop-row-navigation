@@ -1,12 +1,12 @@
 # Visual-servoing based navigation for monitoring row-crop fields
 
 <div align="center">
-	<img src=".readme/vs_poster.png" alt="visual_servoing_husky" title="visual_servoing_husky"/>
+	<img src=".readme/vs_poster.png" alt="visual_servoing_husky" height="180" title="visual_servoing_husky"/>
 </div>
+This work has beed developed @ [IPB](http://www.ipb.uni-bonn.de/), University of Bonn.
 
-By [IPB](http://www.ipb.uni-bonn.de/), University of Bonn.
-
-This is a robot navigation framework tailored for navigating in row-crop fields by exploiting the regular crop-row structure present in the fields. It uses only the images from on-board cameras without the need for performing explicit localization or maintaining a map of the field. It allows the robot to follow the crop-rows accurately and handles the switch to the next row seamlessly within the same framework.
+This is a visual-based robot navigation framework tailored for navigating in row-crop fields.
+It uses the images from two on-board cameras and exploits the regular crop-row structure present in the fields for navigation, without performing explicit localization or mapping. It allows the robot to follow the crop-rows accurately and handles the switch to the next row seamlessly within the same framework.
 
 This implementation uses C++ and ROS and has been tested in different environments both in simulation and in real world and on diverse robotic platforms.
 
@@ -18,35 +18,35 @@ Check out the video of our robot following this approach to navigate on a test r
 		alt="Watch video" height="280" border="10" /></a>
 </div>
 
-
 ## Features
- - Autonomous robot navigation in row-crop fields without requiring maps.
- - Runs on embedded controllers with limit processing power (Odroid, Raspberry Pi).
- - Compatible with ROS.
- - Same performance on different mobile robotic platforms.
- - Includes simulation environment to ease the testing process.
 
-## Requirements
- - Mobile robot equipped with two cameras mounted respectively looking to the front and to the back of the robot as illustrated in the picture below.
+- Visual-based autonomous navigation in row-crop fields.
+- No maps or localization required.
+- Runs on embedded controllers with limit processing power (Odroid, Raspberry Pi).
+- Same performance on different mobile robotic platforms.
+- Includes simulation environment to ease the testing process.
+
+## Robotic setup
+This navigation framework is designed for mobile robots equipped with two cameras mounted respectively looking to the front and to the back of the robot as illustrated in the picture below.
 
  <div align="center">
-	<img src=".readme/vs_graph.png" alt="agribot_3d" height="280" title="agribot_3d"/>
-    <img src=".readme/vs_em.png" alt="camera_img" height="280" title="camera_img"/>
+	<img src=".readme/vs_graph.png" alt="agribot_3d" height="250" title="agribot_3d"/>
+    <img src=".readme/vs_em.png" alt="camera_img" height="250" title="camera_img"/>
 </div>
 
-## Dependencies
-* c++11
-* catkin
-* opencv >= 2.4
-* Eigen >= 3.3
-
-A complete simulation package is provided in [agribot_robot]() repository including  simulated row-crop fields and robot for testing the navigation framework.
+A complete Gazebo simulation package is provided in [agribot_robot]() repository including simulated row-crop fields and robot for testing the navigation framework.
 
 <div align="center">
 	<img src=".readme/motivation.png" alt="husky_navigation" height="280" title="husky_navigation"/>
     <img src=".readme/motivation_old.png" alt="gazebo_navigation" height="280"title="gazebo_navigation"/>
 </div>
 
+
+## Dependencies
+* c++11
+* catkin
+* opencv >= 2.4
+* Eigen >= 3.3
 
 ## How to build and run
 
@@ -106,4 +106,3 @@ Download the bagfile used for our experiments [here]().
 
 ## Acknowledgments
 This work has partly been supported by the German Research Foundation under Germany’s Excellence Strategy, EXC-2070 - 390732324 ([PhenoRob](http://www.phenorob.de/)).
-
