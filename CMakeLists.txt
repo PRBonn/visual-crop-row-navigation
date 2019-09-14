@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(agribot_visualservoing)
+project(visual-crop-row-navigation)
 
 # c++11
 set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")

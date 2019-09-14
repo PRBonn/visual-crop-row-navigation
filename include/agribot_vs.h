@@ -40,7 +40,7 @@
 
 #include <dynamic_reconfigure/server.h>
 
-#include "agribot_visualservoing/vs_msg.h"
+#include "visual-crop-row-navigation/vs_msg.h"
 #include "agribot_types.h"
 
 #define DEG2RAD 0.0174533
@@ -290,7 +290,7 @@ class AgribotVS {
 
   int cnt_off;
 
-  agribot_visualservoing::vs_msg VSMsg;
+  visual-crop-row-navigation::vs_msg VSMsg;
 
   double rho_b;
   double rho_f;

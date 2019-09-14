@@ -77,7 +77,7 @@ class AgribotVSNodeHandler {
    * @param _in 
    */
   void publishVelocity(int _in=1);
-  // void dynamicReconfig_callback(agribot_visualservoing::AgribotVSConfig &config, uint32_t level);
+  // void dynamicReconfig_callback(visual-crop-row-navigation::AgribotVSConfig &config, uint32_t level);
 
   ros::Publisher Time_pub;
   AgribotVS agribotVS;

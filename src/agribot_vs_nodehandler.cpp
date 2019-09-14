@@ -29,7 +29,7 @@ AgribotVSNodeHandler::AgribotVSNodeHandler(ros::NodeHandle& nodeHandle): nodeHan
   // Publishers
   Time_pub = nodeHandle_.advertise<rosgraph_msgs::Clock>("/clock", 10);
   VSVelocityPub = nodeHandle_.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
-  Log_pub = nodeHandle_.advertise<agribot_visualservoing::vs_msg>("/vs_msg", 10);
+  Log_pub = nodeHandle_.advertise<visual-crop-row-navigation::vs_msg>("/vs_msg", 10);
 
   agribotVS.VelocityMsg.linear.x =0.0;
   agribotVS.VelocityMsg.angular.z =0.0;

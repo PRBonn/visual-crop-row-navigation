@@ -1,11 +1,11 @@
-# Visual-servoing based navigation for monitoring row-crop fields
+# Visual Crop Row Navigation
 
 <div align="center">
 	<img src=".readme/vs_poster.png" alt="visual_servoing_husky" height="180" title="visual_servoing_husky"/>
 </div>
 This work has beed developed @ [IPB](http://www.ipb.uni-bonn.de/), University of Bonn.
 
-This is a visual-based robot navigation framework tailored for navigating in row-crop fields.
+This is a visual-servoing based robot navigation framework tailored for navigating in row-crop fields.
 It uses the images from two on-board cameras and exploits the regular crop-row structure present in the fields for navigation, without performing explicit localization or mapping. It allows the robot to follow the crop-rows accurately and handles the switch to the next row seamlessly within the same framework.
 
 This implementation uses C++ and ROS and has been tested in different environments both in simulation and in real world and on diverse robotic platforms.
@@ -58,7 +58,7 @@ git clone https://github.com/PRBonn/visual-crop-row-navigation.git
 2. Build the package
 ```bash
 cd ~/catkin_ws
-catkin build agribot_visualservoing
+catkin build visual-crop-row-navigation
 ```
 3. Run ROS driver to stream images from the robot's cameras, for example using [usb_cam](http://wiki.ros.org/usb_cam)
 <!-- ```
@@ -67,7 +67,7 @@ catkin build agribot_visualservoing
 ``` -->
 4. Run visual servoing navigation
 ```bash
-roslaunch agribot_visualservoing visualservoing.launch
+roslaunch visual-crop-row-navigation visualservoing.launch
 ```
 
 <!-- 
@@ -78,7 +78,7 @@ Node: [/agribot_vs]
 Publications:
  * /cmd_vel [geometry_msgs/Twist]
  * /vs_image [image]
- * /vs_msg [agribot_visualservoing/vs_msg]
+ * /vs_msg [visual-crop-row-navigation/vs_msg]
 
 Subscriptions:
  * /amcl_pose [pose]
