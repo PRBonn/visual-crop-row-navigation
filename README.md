@@ -14,6 +14,8 @@ Check out the video of our robot following this approach to navigate on a test r
 
 <div align="center">
 	<a href="http://www.youtube.com/watch?feature=player_embedded&v=0qg6n4sshHk
+		" target="_blank"><img src=".readme/husky_test.gif" alt="husky_navigation" height="280" title="husky_navigation"/></a>
+	<a href="http://www.youtube.com/watch?feature=player_embedded&v=0qg6n4sshHk
 		" target="_blank"><img src="http://img.youtube.com/vi/0qg6n4sshHk/0.jpg"
 		alt="Watch video" height="280" border="10" /></a>
 </div>
