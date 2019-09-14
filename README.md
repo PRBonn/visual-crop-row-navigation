@@ -10,7 +10,7 @@ It uses the images from two on-board cameras and exploits the regular crop-row s
 
 This implementation uses C++ and ROS and has been tested in different environments both in simulation and in real world and on diverse robotic platforms.
 
-Check out the video of our robot following this approach to navigate on a test row-crop field [here](https://youtu.be/0qg6n4sshHk) or by clicking on the image below.
+Check out the [video](https://youtu.be/0qg6n4sshHk) of our robot following this approach to navigate on a test row-crop field.
 
 <div align="center">
 	<a href="http://www.youtube.com/watch?feature=player_embedded&v=0qg6n4sshHk
