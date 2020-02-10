@@ -57,12 +57,12 @@ A complete Gazebo simulation package is provided in [agribot_robot]() repository
 1. Clone the package into your *catkin_ws*
 ```bash
 cd ~/catkin_ws/src
-git clone https://github.com/PRBonn/visual-crop-row-navigation.git
+git clone https://github.com/PRBonn/visual_crop_row_navigation.git
 ```
 2. Build the package
 ```bash
 cd ~/catkin_ws
-catkin build visual-crop-row-navigation
+catkin build visual_crop_row_navigation
 ```
 3. Run ROS driver to stream images from the robot's cameras, for example using [usb_cam](http://wiki.ros.org/usb_cam)
 <!-- ```
@@ -71,7 +71,7 @@ catkin build visual-crop-row-navigation
 ``` -->
 4. Run visual servoing navigation
 ```bash
-roslaunch visual-crop-row-navigation visualservoing.launch
+roslaunch visual_crop_row_navigation visualservoing.launch
 ```
 
 <!-- 
@@ -82,7 +82,7 @@ Node: [/agribot_vs]
 Publications:
  * /cmd_vel [geometry_msgs/Twist]
  * /vs_image [image]
- * /vs_msg [visual-crop-row-navigation/vs_msg]
+ * /vs_msg [visual_crop_row_navigation/vs_msg]
 
 Subscriptions:
  * /amcl_pose [pose]

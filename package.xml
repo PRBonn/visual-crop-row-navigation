@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>visual-crop-row-navigation</name>
+  <name>visual_crop_row_navigation</name>
   <version>0.0.0</version>
   <description>The Agribot Visual Servoing package</description>
 
