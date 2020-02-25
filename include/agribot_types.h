@@ -1,10 +1,10 @@
-/**************************************************************************/
-/* Paper: Visual-Servoing based Navigation for Monitoring Row-Crop Fields */
-/*    Alireza Ahmadi, Lorenzo Nardi, Nived Chebrolu, Cyrill Stachniss     */
-/*         All authors are with the University of Bonn, Germany           */
-/* maintainer: Alireza Ahmadi                                             */
-/*          (Alireza.Ahmadi@uni-bonn.de / http://alirezaahmadi.xyz)       */
-/**************************************************************************/
+/***************************************************************************************/
+/* Paper: Visual-Servoing based Navigation for Monitoring Row-Crop Fields              */
+/*    Alireza Ahmadi, Lorenzo Nardi, Nived Chebrolu, Chis McCool, Cyrill Stachniss     */
+/*         All authors are with the University of Bonn, Germany                        */
+/* maintainer: Alireza Ahmadi                                                          */
+/*          (Alireza.Ahmadi@uni-bonn.de / http://alirezaahmadi.xyz)                    */
+/***************************************************************************************/
 
 #pragma once
 #include <vector>

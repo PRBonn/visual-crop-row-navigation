@@ -1,10 +1,10 @@
-/**************************************************************************/
-/* Paper: Visual-Servoing based Navigation for Monitoring Row-Crop Fields */
-/*    Alireza Ahmadi, Lorenzo Nardi, Nived Chebrolu, Cyrill Stachniss     */
-/*         All authors are with the University of Bonn, Germany           */
-/* maintainer: Alireza Ahmadi                                             */
-/*          (Alireza.Ahmadi@uni-bonn.de / http://alirezaahmadi.xyz)       */
-/**************************************************************************/
+/***************************************************************************************/
+/* Paper: Visual-Servoing based Navigation for Monitoring Row-Crop Fields              */
+/*    Alireza Ahmadi, Lorenzo Nardi, Nived Chebrolu, Chis McCool, Cyrill Stachniss     */
+/*         All authors are with the University of Bonn, Germany                        */
+/* maintainer: Alireza Ahmadi                                                          */
+/*          (Alireza.Ahmadi@uni-bonn.de / http://alirezaahmadi.xyz)                    */
+/***************************************************************************************/
 
 #include "agribot_vs.h"
 
@@ -51,7 +51,7 @@ namespace agribot_vs{
 
     nodeHandle_.param("/agribot_vs/minContourSize", minContourSize, 8.0);
     
-    nodeHandle_.param("/agribot_vs/cnt_off", cnt_off, 80);
+    nodeHandle_.param("/agribot_vs/max_row_num", max_row_num, 80);
 
     nodeHandle_.param("/agribot_vs/mode", mode, 1);
 
@@ -62,7 +62,6 @@ namespace agribot_vs{
 
     nodeHandle_.param("/agribot_vs/w_min", w_min, 0.015);
     nodeHandle_.param("/agribot_vs/w_max", w_max, 0.15);
-    nodeHandle_.param("/agribot_vs/del_t", del_t, 0.1);
     nodeHandle_.param("/agribot_vs/vf_des", vf_des, 0.05);
     nodeHandle_.param("/agribot_vs/vb_des", vb_des, 0.05);
 
@@ -72,8 +71,9 @@ namespace agribot_vs{
     nodeHandle_.param("/agribot_vs/rho_f", rho_f, -70.0);
     nodeHandle_.param("/agribot_vs/rho_b", rho_b, -40.0);
     
-
-    nodeHandle_.param("/agribot_vs/cam_num", cam_num, 1);
+    nodeHandle_.param("/agribot_vs/camera_ID", camera_ID, 1);
+    nodeHandle_.param("/agribot_vs/maskTuneCamera", maskTuneCamera, 1);
+    nodeHandle_.param("/agribot_vs/fps", fps, 1);
 
     nodeHandle_.param("/agribot_vs/lambda_x_1", lambda_x_1, 1.0);
     nodeHandle_.param("/agribot_vs/lambda_w_1", lambda_w_1, 1.0);
@@ -118,7 +118,8 @@ namespace agribot_vs{
 
     return true;
   }
-  vector<vector<Point>> AgribotVS::CropRowFeatures(Mat& img) {
+  vector<vector<Point>> AgribotVS::CropRowFeatures(camera& camera) {
+    Mat img = camera.image;
     // // convert to HSV color space
     cv::Mat hsvImage;
     cv::cvtColor(img, hsvImage, CV_BGR2HSV);
@@ -154,15 +155,15 @@ namespace agribot_vs{
       drawContours(img_contour, contours, i, color, 1, 8, hierarchy, 0, Point());
     }
 
-    if(mask_tune){
+    if(mask_tune && maskTuneCamera == camera_ID){
       Mat Comb_HSV;
       hconcat(hueMask,saturationMask,Comb_HSV);
       hconcat(Comb_HSV,valueMask ,Comb_HSV);
       cv::resize(Comb_HSV, Comb_HSV, cv::Size(), Scale, Scale);
-      cv::imshow("HSV image", Comb_HSV);
+      cv::imshow("HSV images (Left: H, Middle: S, Right: V)", Comb_HSV);
 
       cv::resize(img_contour, img_contour, cv::Size(), Scale, Scale);
-      imshow("Contours", img_contour);
+      imshow("detected Contours", img_contour);
       waitKey(1);
     }
     return contours;
@@ -309,7 +310,7 @@ namespace agribot_vs{
 
     // compute tranformation between robot to camera frame
     MatrixXf c(2,6); 
-    if( cam_num == 1){
+    if( camera_ID == 1){
       c << 0, -sin(rho), cos(rho), 0, 0, 0,
           -ty, 0, 0, 0, -cos(rho ), -sin(rho);
     }else{
@@ -427,7 +428,7 @@ namespace agribot_vs{
       (avg_nh_points_y < (double)coef && avg_points_y < (double)coef*2) || 
       (avg_nh_points_y > (double)height-coef && avg_points_y > (double)height-coef*2)){
       minp_cnt=0;
-      cout << "I_primary doesn't see anything !!!! id: " << cam_num << endl;
+      cout << "I_primary doesn't see anything !!!! ID: " << camera_ID << endl;
       if(I_secondary.points.size() < min_points){
         cout << "turning_mode: " << turning_mode << endl;
           // No points visible in both cameras
@@ -450,7 +451,7 @@ namespace agribot_vs{
           mode++;
           // 1->2 and 3->4
           cout << "SWITCHING CAMERAS" << endl;
-          switch_cameras(cam_num);
+          switch_cameras(camera_ID);
           initialize_neigbourhood(I_secondary);
           initialize_neigbourhood(I_primary);
           is_in_neigbourhood(I_primary);   
@@ -462,7 +463,7 @@ namespace agribot_vs{
     }else{
         cout  << 
         "mode: " << mode << 
-        ", cam: " <<  cam_num << 
+        ", cam: " <<  camera_ID << 
         ", df: " << drive_forward << 
         ", sd: " << steering_dir << 
         ", dd: " << driving_dir << 

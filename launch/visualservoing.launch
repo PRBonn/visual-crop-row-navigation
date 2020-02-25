@@ -21,9 +21,9 @@
 <!--  <include file="$(find agribot_launch)/launch/camera_umd.launch" />
  -->
 <node pkg="visual_crop_row_navigation" type="agribot_vs_node" name="agribot_vs" output="screen">
-  <!-- <remap from="/camera/rgb/image_raw" to="/agribot/front_camera/image_raw"/> -->
-  <!-- <remap from="/back/rgb/image_raw" to="/agribot/back_camera/image_raw"/> -->
-  <!-- <remap from="/camera/rgb/image_raw" to = "/front/rgb/image_raw"/> -->
+  <!-- <remap from="/front/rgb/image_raw" to="/agribot/front_camera/rgb/image_raw"/>
+  <remap from="/front/rgb/image_raw" to="/agribot/back_camera/rgb/image_raw"/> -->
+  <remap from="/front/rgb/image_raw" to="/camera/rgb/image_raw"/>
 	<rosparam command="load" file="$(find visual_crop_row_navigation)/params/agribot_vs_run.yaml"/>
 </node>
 
