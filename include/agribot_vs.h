@@ -349,7 +349,7 @@ class AgribotVS {
 
   bool publish_cmd_vel,publish_linear_vel;
 
-  vector<Vec4i> CenterLine;
+
   geometry_msgs::Twist VelocityMsg;
   sensor_msgs::Imu imu;
   vector<double> RobotPose;

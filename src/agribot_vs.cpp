@@ -19,12 +19,6 @@ namespace agribot_vs{
   
   AgribotVS::AgribotVS(){
 
-    CenterLine.resize(1, 0);
-    CenterLine[0][0] = 1280 / 2;
-    CenterLine[0][1] = 0;
-    CenterLine[0][2] = 1280 / 2;
-    CenterLine[0][3] = 720;
-
     RobotPose.resize(6, 0);
     RobotLinearVelocities.resize(3, 0);
     RobotAngularVelocities.resize(3, 0);
