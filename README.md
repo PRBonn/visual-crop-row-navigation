@@ -11,7 +11,7 @@ This implementation uses C++ and ROS and has been tested in different environmen
 
 This work has been developed @ [IPB](http://www.ipb.uni-bonn.de/), University of Bonn.
 
-Check out the [video](https://youtu.be/0qg6n4sshHk) of our robot following this approach to navigate on a test row-crop field.
+Check out the [video](https://www.youtube.com/watch?v=uO6cgBqKBas) of our robot following this approach to navigate on a test row-crop field.
 
 <div align="center">
 	<a href="http://www.youtube.com/watch?feature=player_embedded&v=0qg6n4sshHk
