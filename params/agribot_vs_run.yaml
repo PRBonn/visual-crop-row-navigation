@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ???
 ControllerType: 1
 # ???
@@ -22,6 +23,47 @@ publish_linear_vel: true
 max_row_num: 20
 # ???
 div_soft: 25
+=======
+#-------------------------------------------------------
+#--------------------ROS node params-------------------- 
+# controlling the  velocity publisher stare (ON: True of OFF: false)
+publish_cmd_vel: true
+# controls publishing linear velocity (used fro debug and setting angular PID params)
+publish_linear_vel: true
+#-------------------------------------------------------
+#---------------------Runtime params-------------------- 
+# Maxixmum number of rows to follow
+max_row_num: 20
+# Frame rate of ROs node = Fps 
+fps: 20
+#-------------------------------------------------------
+#-------------------Application modes-------------------
+# The mode which is used for tuning the mask (no velocity will be published)
+mask_tune: true
+# In case of having only one camera set this param to true (the front camera will be used)
+single_camera_mode: true
+#-------------------------------------------------------
+#----------------Image ans Mask params------------------ 
+# Camera used for mask tuninig 1: front, 2: rear
+maskTuneCamera: 1
+# Scale of the image processed (it resizes the input images before process) between 0.0 ~ 1.0
+Scale: 0.7
+# Min and Max of Hue Channel
+max_Hue: 80
+min_Hue: 40
+# Min and Max of Saturation Channel
+max_Saturation: 255
+min_Saturation: 50
+# Min and Max of Value Channel
+max_Value: 150
+min_value: 100
+#-------------------------------------------------------
+#------------------Feature space------------------------ 
+# min radius of contour which will be detected and contribute on detecting line 
+minContourSize: 2.0
+# ???
+LineFitting_method: 1 
+>>>>>>> b73cefaf723d647edcf4b3c8a6c33971fa78f558
 # -------------------------------------------------------
 #---------------------- Neighbourhood---------------------
 # Size of input image should be set here 
@@ -54,68 +96,67 @@ w_min: 0.01
 # ???
 z_min: 0.01
 # -------------------------------------------------------
-#---------------------- Controller ---------------------- 
-del_t: 0.1
+#---------------------- Controller ----------------------
+# position of camera w.r.t local origin
 ty: 0.6
-
-tz: 0.7 # 0.7 husky
+# height of camera from ground
+tz: 0.7
+# tilt angle of front camera
 rho_b: -60.0
+# tilt angle of rear camera
 rho_f: -60.0
 # -------------------------------------------------------
 #---------------------- Gains --------------------------- 
-# husky
+# Gains of controll set for husky-clear path platform
+# gains for mode 1
 lambda_x_1: 10
 lambda_w_1: 1
-
+# gains for mode 2
 lambda_x_2: 0
 lambda_w_2: 5000
-
-
+# gains for mode 3
 lambda_x_3: 10
 lambda_w_3: 1
-
+# gains for mode 4
 lambda_x_4: 0
 lambda_w_4: 5000
 # -------------------------------------------------------
+#---------------------- States to start ----------------- 
+# uncomment each of these states and controller will start from that state to drive robot
+# camera_ID: 1 -> front Camera, camera_ID: 2 -> Rear Camera
+# drive_forward: true -> moving forward, drive_forward: false -> moving backward
+# turning_mode: based on the mode (state machine) is the robot is state of turning or not
+# steering_dir: 1 -> normal, steering_dir: -1 -> inverse (based on robots local coordinate system) 
+# driving_dir: 1 -> moving forward, driving_dir: 2 moving backward
 
 #---------------------- States to start ----------------- 
 # uncomment each of these states and controller will start from that state to drive robot
 mode: 1
-cam_num: 1
+camera_ID: 1
 drive_forward: true
 turning_mode: false
 steering_dir: 1
 driving_dir: 1
 
 # mode: 2
-# cam_num: 2
+# camera_ID: 2
 # drive_forward: false
 # turning_mode: true
 # steering_dir: -1
 # driving_dir: 1
 
 # mode: 3
-# cam_num: 2
+# camera_ID: 2
 # drive_forward: true
 # turning_mode: false
 # steering_dir: -1
 # driving_dir: -1
 
 # mode: 4
-# cam_num: 1
+# camera_ID: 1
 # drive_forward: false
 # turning_mode: true
 # steering_dir: 1
 # driving_dir: -1
-#-------------------------------------------------------
-#----------------Image filter params-------------------- 
-# field
-max_Hue: 80
-min_Hue: 40
 
-max_Saturation: 255
-min_Saturation: 100
-
-max_Value: 255
-min_value: 70
 

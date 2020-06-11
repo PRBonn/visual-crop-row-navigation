@@ -1,10 +1,10 @@
-/**************************************************************************/
-/* Paper: Visual-Servoing based Navigation for Monitoring Row-Crop Fields */
-/*    Alireza Ahmadi, Lorenzo Nardi, Nived Chebrolu, Cyrill Stachniss     */
-/*         All authors are with the University of Bonn, Germany           */
-/* maintainer: Alireza Ahmadi                                             */
-/*          (Alireza.Ahmadi@uni-bonn.de / http://alirezaahmadi.xyz)       */
-/**************************************************************************/
+/***************************************************************************************/
+/* Paper: Visual-Servoing based Navigation for Monitoring Row-Crop Fields              */
+/*    Alireza Ahmadi, Lorenzo Nardi, Nived Chebrolu, Chis McCool, Cyrill Stachniss     */
+/*         All authors are with the University of Bonn, Germany                        */
+/* maintainer: Alireza Ahmadi                                                          */
+/*          (Alireza.Ahmadi@uni-bonn.de / http://alirezaahmadi.xyz)                    */
+/***************************************************************************************/
 
 #pragma once
 
@@ -85,7 +85,7 @@ class AgribotVS {
    * @param img - input - image of front or back cameras
    * @return vector<vector<Point>> - contours extracted from image 
    */
-  vector<vector<Point>> CropRowFeatures(Mat& img);
+  vector<vector<Point>> CropRowFeatures(camera& camera);
   /**
    * @brief main functoin to control the robot baesd on extracted features
    * 
@@ -288,7 +288,7 @@ class AgribotVS {
   camera front_cam;
   camera back_cam;
 
-  int cnt_off;
+  int max_row_num;
 
   visual_crop_row_navigation::vs_msg VSMsg;
 
@@ -299,7 +299,6 @@ class AgribotVS {
   double tz;
   double vf_des;
   double vb_des;
-  double del_t;
 
   double coef;
   int min_frame;
@@ -310,7 +309,6 @@ class AgribotVS {
   int nh_offset;
 
   int mode;
-  int w_control_mode;
 
   double w_max;
   double w_min;
@@ -320,8 +318,6 @@ class AgribotVS {
 
   double lambda_x_1, lambda_x_2 ,lambda_x_3, lambda_x_4;
   double lambda_w_1, lambda_w_2 ,lambda_w_3, lambda_w_4;
-
-  double div_soft;
 
   int steering_dir;
   bool drive_forward;
@@ -336,7 +332,9 @@ class AgribotVS {
   bool switching_controls_drive_forward;
   bool switching_controls_turning_mode;
   int switching_controls_steering_dir;
-  int cam_num;
+  int camera_ID;
+  int maskTuneCamera;
+  int fps;
 
   int minp_cnt;
 
@@ -405,7 +403,6 @@ class AgribotVS {
   double k_d_ang_;
 
   int LineFitting_method;
-  int ControllerType;
 
  private:
 

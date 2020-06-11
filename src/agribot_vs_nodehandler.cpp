@@ -1,10 +1,10 @@
-/**************************************************************************/
-/* Paper: Visual-Servoing based Navigation for Monitoring Row-Crop Fields */
-/*    Alireza Ahmadi, Lorenzo Nardi, Nived Chebrolu, Cyrill Stachniss     */
-/*         All authors are with the University of Bonn, Germany           */
-/* maintainer: Alireza Ahmadi                                             */
-/*          (Alireza.Ahmadi@uni-bonn.de / http://alirezaahmadi.xyz)       */
-/**************************************************************************/
+/***************************************************************************************/
+/* Paper: Visual-Servoing based Navigation for Monitoring Row-Crop Fields              */
+/*    Alireza Ahmadi, Lorenzo Nardi, Nived Chebrolu, Chis McCool, Cyrill Stachniss     */
+/*         All authors are with the University of Bonn, Germany                        */
+/* maintainer: Alireza Ahmadi                                                          */
+/*          (Alireza.Ahmadi@uni-bonn.de / http://alirezaahmadi.xyz)                    */
+/***************************************************************************************/
 
 #include "agribot_vs_nodehandler.h"
 #include "agribot_vs.h"
@@ -41,7 +41,7 @@ AgribotVSNodeHandler::~AgribotVSNodeHandler() {
 }
 void AgribotVSNodeHandler::CropRow_Tracking(camera& src){
     // finding contour from image baed on crops in rows
-    src.contours = agribotVS.CropRowFeatures(src.image);
+    src.contours = agribotVS.CropRowFeatures(src);
     if(!agribotVS.mask_tune || src.contours.size() != 0){
 
       src.points = agribotVS.getContureCenters(src.image, src.contours);
@@ -65,7 +65,7 @@ void AgribotVSNodeHandler::imageFrontCalllBack(const sensor_msgs::ImageConstPtr&
     stringstream stream,stream1,stream2;
     stream << agribotVS.front_cam.points.size(); 
     stream1 << agribotVS.front_cam.nh_points.size(); 
-    stream2 << agribotVS.cam_num;
+    stream2 << agribotVS.camera_ID;
     str = "Number of Points: " + stream.str() + " nh_points: " + stream1.str() + " Cam ID: " + stream2.str();
     cv::putText(agribotVS.front_cam.image, str, cv::Point(40, 20),  // Coordinates
                 cv::FONT_HERSHEY_COMPLEX_SMALL,       // Font
@@ -86,7 +86,7 @@ void AgribotVSNodeHandler::imageBackCalllBack(const sensor_msgs::ImageConstPtr& 
     stringstream stream,stream1,stream2;
     stream << agribotVS.back_cam.points.size(); 
     stream1 << agribotVS.back_cam.nh_points.size(); 
-    stream2 << agribotVS.cam_num;
+    stream2 << agribotVS.camera_ID;
     str = "Number of Points: " + stream.str() + " nh_points: " + stream1.str() + " Cam ID: " + stream2.str();
     cv::putText(agribotVS.back_cam.image, str, cv::Point(40, 20),  // Coordinates
                 cv::FONT_HERSHEY_COMPLEX_SMALL,       // Font
