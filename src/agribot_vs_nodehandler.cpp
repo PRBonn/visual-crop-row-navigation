@@ -60,7 +60,7 @@ void AgribotVSNodeHandler::imageFrontCalllBack(const sensor_msgs::ImageConstPtr&
   try {
     agribotVS.front_cam.image = cv_bridge::toCvShare(msg, "bgr8")->image;
     CropRow_Tracking(agribotVS.front_cam);
-    ROS_ERROR("received message to 'front'.");
+    
     string str;
     stringstream stream,stream1,stream2;
     stream << agribotVS.front_cam.points.size(); 
@@ -81,7 +81,7 @@ void AgribotVSNodeHandler::imageBackCalllBack(const sensor_msgs::ImageConstPtr& 
   try {
     agribotVS.back_cam.image = cv_bridge::toCvShare(msg, "bgr8")->image;
     CropRow_Tracking(agribotVS.back_cam);
-    ROS_ERROR("received message to 'back'.");
+
     string str;
     stringstream stream,stream1,stream2;
     stream << agribotVS.back_cam.points.size(); 
@@ -155,13 +155,5 @@ void AgribotVSNodeHandler::publishVelocity(int _in) {
   }
   Log_pub.publish(agribotVS.VSMsg);
 }
-void AgribotVSNodeHandler::configCameras(camera *imgPrimary, camera *imgSecondary){
-  if(this->agribotVS.camera_ID == 1){
-    imgPrimary = &this->agribotVS.front_cam;
-    imgSecondary = &this->agribotVS.back_cam;
-  }else {
-    imgPrimary = &this->agribotVS.back_cam;
-    imgSecondary = &this->agribotVS.front_cam;
-  }
-}
-}   // namespace
+
+}   // namespace agribot_vs

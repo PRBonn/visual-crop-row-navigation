@@ -1,4 +1,3 @@
-
 #-------------------------------------------------------
 #--------------------ROS node params-------------------- 
 # controlling the  velocity publisher stare (ON: True of OFF: false)
@@ -8,8 +7,8 @@ publish_linear_vel: true
 #-------------------------------------------------------
 #---------------------Runtime params-------------------- 
 # Maxixmum number of rows to follow
-max_row_num: 0
-# Frame rate of ROS node = Fps 
+max_row_num: 20
+# Frame rate of ROs node = Fps 
 fps: 20
 #-------------------------------------------------------
 #-------------------Application modes-------------------
@@ -36,7 +35,7 @@ min_value: 100
 #------------------Feature space------------------------ 
 # min radius of contour which will be detected and contribute on detecting line 
 minContourSize: 2.0
-# method used to fit line robust LS or hough
+# ???
 LineFitting_method: 1 
 # -------------------------------------------------------
 #---------------------- Neighbourhood---------------------
@@ -67,7 +66,7 @@ vb_des: 0.2
 w_max: 0.1 
 # Min angular velocity 
 w_min: 0.01
-# ??
+# ???
 z_min: 0.01
 # -------------------------------------------------------
 #---------------------- Controller ----------------------
