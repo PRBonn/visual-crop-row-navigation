@@ -13,6 +13,11 @@
 #include <sstream>
 #include <time.h>
 
+struct RunOnce {
+  template <typename T>
+  RunOnce(T &&f) { f(); }
+};
+
 int main(int argc, char** argv) {
   // initialize node
   ros::init(argc, argv, "agribot_vs");
@@ -22,10 +27,8 @@ int main(int argc, char** argv) {
   agribot_vs::AgribotVSNodeHandler vs_NodeH(nodeHandle);
   ros::Rate loop_rate(vs_NodeH.agribotVS.fps);
 
-  if(!vs_NodeH.agribotVS.mask_tune)cout << "Mask Tune Mode ..." << endl;
-  if(vs_NodeH.agribotVS.single_camera_mode)cout << "Single Camera Mode (Front Camera will only be used..)" << endl;
-
   agribot_vs::camera *I_primary,*I_secondary;
+  
   if(vs_NodeH.agribotVS.camera_ID == 1){
     I_primary = &vs_NodeH.agribotVS.front_cam;
     I_secondary = &vs_NodeH.agribotVS.back_cam;
@@ -35,25 +38,21 @@ int main(int argc, char** argv) {
   }
   vs_NodeH.agribotVS.initialize_neigbourhood(*I_primary);
   vs_NodeH.agribotVS.initialize_neigbourhood(*I_secondary);
-  int cnt =0;
+  int rowNum = 0;
   
   while(ros::ok()){
 
-    if(cnt < vs_NodeH.agribotVS.max_row_num){
+    if(rowNum < vs_NodeH.agribotVS.max_row_num){
 
       if(vs_NodeH.agribotVS.single_camera_mode){
+        static RunOnce a([]() { cout << "Single Camera Mode (Front Camera will only be used..)" << endl; });
         I_secondary = I_primary;
       }
       if(!vs_NodeH.agribotVS.mask_tune){
+        
         vs_NodeH.agribotVS.switching_controller(*I_primary, *I_secondary, vs_NodeH.agribotVS.min_points_switch);
 
-        if(vs_NodeH.agribotVS.camera_ID == 1){
-          I_primary = &vs_NodeH.agribotVS.front_cam;
-          I_secondary = &vs_NodeH.agribotVS.back_cam;
-        }else {
-          I_primary = &vs_NodeH.agribotVS.back_cam;
-          I_secondary = &vs_NodeH.agribotVS.front_cam;
-        }
+        vs_NodeH.configCameras(I_primary, I_secondary);
 
         vs_NodeH.agribotVS.compute_feature_point(*I_primary);
         vs_NodeH.agribotVS.Controller(*I_primary,*I_secondary);
@@ -72,9 +71,10 @@ int main(int argc, char** argv) {
           cv::resize(I_primary->image, des_comp, cv::Size(), vs_NodeH.agribotVS.Scale, vs_NodeH.agribotVS.Scale);
           imshow("Cameras", des_comp);
           waitKey(1);
-        }else{
-          cout << "Is Image empty? Camera-Primary: " << I_primary->image.empty() <<  " , Camera-Secondary "<< I_secondary->image.empty() << endl;
         }
+        
+      }else{
+         static RunOnce a([]() {cout << "Mask Tune Mode ..." << endl; });
       }
 
       if(I_primary->points.size() == 0){
@@ -89,7 +89,7 @@ int main(int argc, char** argv) {
       vs_NodeH.Time_pub.publish(curr_time_msg);
     }
     
-    if(cnt < 1000)cnt++;
+    rowNum++;
     ros::spinOnce();
     loop_rate.sleep();
   }
