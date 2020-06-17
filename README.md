@@ -116,12 +116,15 @@ Simultion and robot packages can be found in [Agribot repo](https://github.com/a
 ## Citting 
 if you use this project in your recent works please cite us by:
 
+```bash
+
 @article{ahmadi2019visual,
   title={Visual Servoing-based Navigation for Monitoring Row-Crop Fields},
   author={Ahmadi, Alireza and Nardi, Lorenzo and Chebrolu, Nived and Stachniss, Cyrill},
   journal={arXiv preprint arXiv:1909.12754},
   year={2019}
 }
+```
 
 ## Acknowledgments
 This work has partly been supported by the German Research Foundation under Germany’s Excellence Strategy, EXC-2070 - 390732324 ([PhenoRob](http://www.phenorob.de/)).
