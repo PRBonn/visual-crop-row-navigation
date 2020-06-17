@@ -114,7 +114,7 @@ Simultion and robot packages can be found in [Agribot repo](https://github.com/a
 
 
 ## Citation 
-if you use this project in your recent works please cite us by:
+if you use this project in your recent works please refernce to it by:
 
 ```bash
 
