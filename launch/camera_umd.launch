@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+   <node name="usb_cam_front" pkg="usb_cam" type="usb_cam_node" required="true"  output="screen" >
+    <param name="video_device" value="/dev/video0" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="480" />
+    <param name="pixel_format" value="yuyv" />
+    <param name="camera_frame_id" value="usb_cam" />
+    <param name="io_method" value="mmap"/>
+    <remap from="/usb_cam_front/image_raw" to="/front/rgb/image_raw"/>
+  </node>  
+  <node name="usb_cam_back" pkg="usb_cam" type="usb_cam_node" required="true"  output="screen" >
+    <param name="video_device" value="/dev/video2" />
+    <param name="image_width" value="640" />
+    <param name="image_height" value="480" />
+    <param name="pixel_format" value="yuyv" />
+    <param name="camera_frame_id" value="usb_cam" />
+    <param name="io_method" value="mmap"/>
+    <remap from="/usb_cam_back/image_raw" to="/back/rgb/image_raw"/>
+  </node>  
+
+</launch>
+
+

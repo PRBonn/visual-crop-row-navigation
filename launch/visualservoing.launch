@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 
-  <!-- <include file="$(find agribot_launch)/launch/camera_umd.launch" /> -->
+  <include file="$(find visual_crop_row_navigation)/launch/camera_umd.launch" />
 
   <node pkg="visual_crop_row_navigation" type="agribot_vs_node" name="agribot_vs" output="screen">
 
