@@ -38,7 +38,7 @@ This navigation framework is designed for mobile robots equipped with two camera
     <img src=".readme/vs_em.png" alt="camera_img" height="250" title="camera_img"/>
 </div>
 
-A complete Gazebo simulation package is provided in [agribot_robot]() repository including simulated row-crop fields and robot for testing the navigation framework.
+A complete Gazebo simulation package is provided in [agribot_robot](https://github.com/PRBonn/Agribot) repository including simulated row-crop fields and robot for testing the navigation framework.
 
 <div align="center">
 	<img src=".readme/motivation.png" alt="husky_navigation" height="280" title="husky_navigation"/>
@@ -110,7 +110,7 @@ Download the bagfile used for our experiments [here]().
 
 ## Simulation 
 
-Simultion and robot packages can be found in [Agribot repo](https://github.com/alirezaahmadi/Agribot)
+Simultion and robot packages can be found in [Agribot repo](https://github.com/PRBonn/Agribot)
 
 
 ## Citation 
