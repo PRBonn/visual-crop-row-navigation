@@ -74,32 +74,6 @@ catkin build visual_crop_row_navigation
 roslaunch visual_crop_row_navigation visualservoing.launch
 ```
 
-<!-- 
-**Node Properties**
-```
-Node: [/agribot_vs]
-
-Publications:
- * /cmd_vel [geometry_msgs/Twist]
- * /vs_image [image]
- * /vs_msg [visual_crop_row_navigation/vs_msg]
-
-Subscriptions:
- * /amcl_pose [pose]
- * /odom [geometry_msg/odometry]
- * /front/rgb/image_raw [image]
- * /back/rgb/image_raw [image]
- * /zed/camera/left/image_raw [sensor_msgs/Image]
-
-Services:
- * None
-
-**Parameters**
- * None
-```
---- 
- -->
-
 Successfully tested using:
 - Ubuntu 16.04
 - ROS kinetic
