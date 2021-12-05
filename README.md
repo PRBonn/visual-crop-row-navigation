@@ -92,11 +92,20 @@ if you use this project in your recent works please refernce to it by:
 
 ```bash
 
-@article{ahmadi2019visual,
-  title={Visual Servoing-based Navigation for Monitoring Row-Crop Fields},
+@article{ahmadi2021towards,
+  title={Towards Autonomous Crop-Agnostic Visual Navigation in Arable Fields},
+  author={Ahmadi, Alireza and Halstead, Michael and McCool, Chris},
+  journal={arXiv preprint arXiv:2109.11936},
+  year={2021}
+}
+
+@inproceedings{ahmadi2020visual,
+  title={Visual servoing-based navigation for monitoring row-crop fields},
   author={Ahmadi, Alireza and Nardi, Lorenzo and Chebrolu, Nived and Stachniss, Cyrill},
-  journal={arXiv preprint arXiv:1909.12754},
-  year={2019}
+  booktitle={2020 IEEE International Conference on Robotics and Automation (ICRA)},
+  pages={4920--4926},
+  year={2020},
+  organization={IEEE}
 }
 ```
 
