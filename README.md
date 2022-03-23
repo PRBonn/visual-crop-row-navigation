@@ -4,6 +4,9 @@
 	<img src=".readme/vs_poster.png" alt="visual_servoing_husky" height="180" title="visual_servoing_husky"/>
 </div>
 
+**Update**
+A python based implementation for Multi-crop-row navigation can be found here [visual-multi-crop-row-navigation](https://github.com/Agricultural-Robotics-Bonn/visual-multi-crop-row-navigation/blob/main/README.md)
+
 This is a visual-servoing based robot navigation framework tailored for navigating in row-crop fields.
 It uses the images from two on-board cameras and exploits the regular crop-row structure present in the fields for navigation, without performing explicit localization or mapping. It allows the robot to follow the crop-rows accurately and handles the switch to the next row seamlessly within the same framework.
 
