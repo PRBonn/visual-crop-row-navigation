@@ -4,7 +4,9 @@
 	<img src=".readme/vs_poster.png" alt="visual_servoing_husky" height="180" title="visual_servoing_husky"/>
 </div>
 
+
 **Update**
+
 A python based implementation for Multi-crop-row navigation can be found here [visual-multi-crop-row-navigation](https://github.com/Agricultural-Robotics-Bonn/visual-multi-crop-row-navigation/blob/main/README.md)
 
 This is a visual-servoing based robot navigation framework tailored for navigating in row-crop fields.
