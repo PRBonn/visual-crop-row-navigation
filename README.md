@@ -121,8 +121,6 @@ if you use this project in your recent works please refernce to it by:
 ```
 
 <div align="center">
-
-**Buy Me A Coffee**
   
 [![paypal](https://pics.paypal.com/00/s/NGRhNWNlODUtMzZlOS00MjJhLTg2NDEtMzNiNzczMTZkMDU4/file.PNG)](https://www.paypal.com/donate/?hosted_button_id=23TQAZ9MSLAUU)
 
