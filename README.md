@@ -97,7 +97,6 @@ Download the bagfile used for our experiments [here]().
 
 Simultion and robot packages can be found in [Agribot repo](https://github.com/PRBonn/agribot)
 
-```
 
 <div align="center">
   
