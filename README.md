@@ -99,14 +99,6 @@ Simultion and robot packages can be found in [Agribot repo](https://github.com/P
 
 ---
 
-<div align="center">
-  
-[![paypal](https://pics.paypal.com/00/s/NGRhNWNlODUtMzZlOS00MjJhLTg2NDEtMzNiNzczMTZkMDU4/file.PNG)](https://www.paypal.com/donate/?hosted_button_id=23TQAZ9MSLAUU)
-
-</div>
-
----
-
 ## Citation 
 if you use this project in your recent works please refernce to it by:
 
